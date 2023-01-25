@@ -17,7 +17,7 @@ struct OMVBB
     {
         this->extension = static_cast<double>(extension);
     }
-    void compute(PointVector points)
+    PointVector compute(PointVector points)
     {
         ApproxMVBB::Matrix3Dyn matrix(3, points.size());
         for (unsigned int i = 0; i < points.size(); ++i)
@@ -43,6 +43,13 @@ struct OMVBB
         {
             box.expandToMinExtentAbsolute(extension);
         }
+        ApproxMVBB::Vector3List corners = box.getCornerPoints();
+        PointVector result;
+        for (unsigned int i = 0; i < 8; ++i)
+        {
+            result.push_back(Point(static_cast<float>(corners[i](0)), static_cast<float>(corners[i](1)), static_cast<float>(corners[i](2))));
+        }
+        return result;
     }
     double extension;
 };
