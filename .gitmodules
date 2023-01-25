@@ -1,0 +1,3 @@
+[submodule "ApproxMVBB"]
+	path = ApproxMVBB
+	url = https://github.com/gabyx/ApproxMVBB.git
