@@ -8,13 +8,17 @@ set(Python_FIND_STRATEGY LOCATION)
 find_package(Threads REQUIRED)
 find_package(Python3 ${PY_VERSION} EXACT REQUIRED COMPONENTS Development)
 find_package(Boost 1.64.0 REQUIRED COMPONENTS system python${Python3_VERSION_MAJOR}${Python3_VERSION_MINOR})
+find_package(Eigen3 REQUIRED)
 
 set(SRC ${PROJECT_SOURCE_DIR}/lib/src)
 
 include_directories(${Boost_INCLUDE_DIRS})
 include_directories(${Python3_INCLUDE_DIRS})
+include_directories(${EIGEN3_INCLUDE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/ApproxMVBB/external/GeometryPredicates/include)
+include_directories(${PROJECT_SOURCE_DIR}/ApproxMVBB/external/Diameter/include)
 include_directories(${PROJECT_SOURCE_DIR}/ApproxMVBB/include)
-include_directories(${CMAKE_CURRENT_BINARY_DIR}/ApproxMVBB/include/ApproxMVBB/Config/Config.hpp)
+include_directories(${PROJECT_BINARY_DIR}/ApproxMVBB/include)
 
 set(LIBS )
 list(APPEND LIBS ${CMAKE_THREAD_LIBS_INIT})

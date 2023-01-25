@@ -25,6 +25,10 @@ set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debug or R
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/ApproxMVBB/cmake)
 set(ApproxMVBB_BUILD_LIBRARY_STATIC ON)
 
+if ("${TARGET_PLATFORM}" STREQUAL "Linux")
+    add_definitions("-fPIC")
+endif()
+
 add_subdirectory(ApproxMVBB)
 add_subdirectory(lib)
 
