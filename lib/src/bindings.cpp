@@ -22,7 +22,9 @@ struct OMVBB
         ApproxMVBB::Matrix3Dyn matrix(3, points.size());
         for (unsigned int i = 0; i < points.size(); ++i)
         {
-            matrix[i] = Vector3Dyn(std::get<0>(points[i]), std::get<1>(points[i]), std::get<2>(points[i]));
+            matrix(0, i) = static_cast<double>(std::get<0>(points[i]));
+            matrix(1, i) = static_cast<double>(std::get<1>(points[i]));
+            matrix(2, i) = static_cast<double>(std::get<2>(points[i]));
         }
         ApproxMVBB::OOBB box = ApproxMVBB::approximateMVBB(matrix,
                                                         0.001,
@@ -31,7 +33,7 @@ struct OMVBB
                                                         0,
                                                         5);
         // To make all points inside the OOBB :
-        ApproxMVBB::Matrix33 transpose = oobb.m_q_KI.matrix().transpose();  // faster to store the transformation matrix first
+        ApproxMVBB::Matrix33 transpose = box.m_q_KI.matrix().transpose();  // faster to store the transformation matrix first
         auto size = matrix.cols();
         for(unsigned int i = 0; i < size; ++i)
         {

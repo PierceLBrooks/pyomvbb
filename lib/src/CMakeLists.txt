@@ -14,6 +14,7 @@ set(SRC ${PROJECT_SOURCE_DIR}/lib/src)
 include_directories(${Boost_INCLUDE_DIRS})
 include_directories(${Python3_INCLUDE_DIRS})
 include_directories(${PROJECT_SOURCE_DIR}/ApproxMVBB/include)
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/ApproxMVBB/include/ApproxMVBB/Config/Config.hpp)
 
 set(LIBS )
 list(APPEND LIBS ${CMAKE_THREAD_LIBS_INIT})
